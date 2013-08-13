@@ -1,0 +1,17 @@
+[
+{
+"modid": "MCSTUDENT",
+"name": "Minecraft Student",
+"description": "Become a better Student by playing Minecraft and answering questions!",
+"version": "Alpha 0.1",
+"url": "www.caramelcode.com/minecraft/student",
+"authorList": [
+"DaddyDaddyDaddy"
+],
+"credits": "Thank you to my kids Rowen and Elliott for inspiring me to write this mod!",
+"logoFile": "/assets/mcstudent/logoFile.png",
+"screenshots": [],
+"dependencies": [],
+"mcversion": "1.6.2"
+}
+]
