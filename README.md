@@ -13,9 +13,9 @@ Installation
 ```cfg
 student_category {
     # How many minutes between questions. Default 3.
-    question_minutes=5
+    question_minutes=3
 
     # What grade level math questions to ask. Possible 1-4. Default 1.
-    student_grade=2     
+    student_grade=1  
 }
 ```
