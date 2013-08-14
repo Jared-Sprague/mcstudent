@@ -2,11 +2,12 @@ package com.caramelcode.mcstudent.forge;
 
 import java.io.File;
 
+import net.minecraftforge.common.ConfigCategory;
 import net.minecraftforge.common.Configuration;
 
 public class ConfigHelper {
 	public static final String STUDENT_CATEGORY = "student_category";
-	public static final int DEFAULT_QUESTION_MINUTES = 1;
+	public static final int DEFAULT_QUESTION_MINUTES = 5;
 	public static final int ONE_MINUTE_TICKS = 1200;
 	public static final int DEFAULT_STUDENT_GRADE = 1;
 	private static Configuration config = null;
@@ -16,18 +17,24 @@ public class ConfigHelper {
 			config = new Configuration(configFile);
 
 			config.load();
+			
+			// Initialize the category
+			ConfigCategory category = config.getCategory(STUDENT_CATEGORY);
+			category.setComment("I:question_minutes - Number of minutes between questions.\n"
+					+ "I:student_grade - Student's grade level. Possible values 1-4 currently. More grade levels coming soon.");
 
-			// TODO: if required config variables are do not exist, create them
-
-			// Create the custom category if it doesn't exist
-			config.getCategory(STUDENT_CATEGORY);
+			// Initialize default configuration variables
+			int questionMinutes = config.get(STUDENT_CATEGORY, "question_minutes",
+					DEFAULT_QUESTION_MINUTES).getInt();
+			int studentGrade = config.get(STUDENT_CATEGORY, "student_grade", DEFAULT_STUDENT_GRADE)
+					.getInt();
 
 			config.save();
 		}
 	}
 
 	public static Configuration getConfig() {
-		return config;
+		return config;	
 	}
 
 	public static int getQuestionMinutes() {
@@ -45,8 +52,8 @@ public class ConfigHelper {
 		int studentGrade = DEFAULT_STUDENT_GRADE;
 
 		if (config != null) {
-			studentGrade = config.get(ConfigHelper.STUDENT_CATEGORY, "student_grade",
-					DEFAULT_STUDENT_GRADE).getInt();
+			studentGrade = config.get(STUDENT_CATEGORY, "student_grade", DEFAULT_STUDENT_GRADE)
+					.getInt();
 		}
 
 		return studentGrade;
