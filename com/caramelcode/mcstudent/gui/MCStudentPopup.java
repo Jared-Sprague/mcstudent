@@ -5,14 +5,14 @@ import net.minecraft.util.ResourceLocation;
 
 import org.lwjgl.opengl.GL11;
 
+import com.caramelcode.mcstudent.forge.AssetHelper;
 import com.caramelcode.mcstudent.forge.MCStudentModInfo;
 import com.mcf.davidee.guilib.basic.BasicScreen;
 import com.mcf.davidee.guilib.basic.OverlayScreen;
 
 public abstract class MCStudentPopup extends BasicScreen {
 
-	private static final ResourceLocation TEXTURE = new ResourceLocation(
-			MCStudentModInfo.ID.toLowerCase(), "textures/gui/window.png");
+	private static final ResourceLocation TEXTURE = AssetHelper.getTexture("gui", "window.png");
 
 	public static final int WIDTH = 256, HEIGHT = 129;
 

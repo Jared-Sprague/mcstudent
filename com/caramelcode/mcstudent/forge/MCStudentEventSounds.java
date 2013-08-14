@@ -7,8 +7,8 @@ public class MCStudentEventSounds {
 	@ForgeSubscribe
 	public void onSound(SoundLoadEvent event) {
 		try {
-			event.manager.addSound(MCStudentModInfo.ID.toLowerCase() + ":correct1.ogg");
-			event.manager.addSound(MCStudentModInfo.ID.toLowerCase() + ":correct2.ogg");
+			event.manager.addSound(AssetHelper.SOUND_CORRECT + "1.ogg");
+			event.manager.addSound(AssetHelper.SOUND_CORRECT + "2.ogg");
 		} catch (Exception e) {
 			System.err.println(e);
 		}

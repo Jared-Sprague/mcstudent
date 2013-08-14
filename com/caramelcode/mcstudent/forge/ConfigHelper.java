@@ -12,8 +12,6 @@ public class ConfigHelper {
 	private static Configuration config = null;
 
 	public static void init(File configFile) {
-		System.out.println("************ ConfigHandler.init");
-
 		if (config == null) {
 			config = new Configuration(configFile);
 

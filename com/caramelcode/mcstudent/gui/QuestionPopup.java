@@ -5,6 +5,7 @@ import java.util.Set;
 import net.minecraft.client.Minecraft;
 import net.minecraft.world.World;
 
+import com.caramelcode.mcstudent.forge.AssetHelper;
 import com.caramelcode.mcstudent.forge.MCStudentModInfo;
 import com.caramelcode.mcstudent.questions.MathTextFieldQuestion;
 import com.caramelcode.mcstudent.questions.TextFieldQuestion;
@@ -74,8 +75,7 @@ public class QuestionPopup extends MCStudentPopup {
 				if (answerField.getText().equalsIgnoreCase(question.getAnswer())) {
 					// answer was correct play the correct answer sound
 					Minecraft mc = Minecraft.getMinecraft();
-					mc.sndManager.playSoundFX(MCStudentModInfo.ID.toLowerCase() + ":correct", 3.0F,
-							1.0F);
+					mc.sndManager.playSoundFX(AssetHelper.SOUND_CORRECT, 3.0F, 1.0F);
 					close();
 				} else {
 					// answer was wrong, get a new question and update the popup
