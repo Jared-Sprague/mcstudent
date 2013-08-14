@@ -11,7 +11,7 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkMod;
 
 @Mod(modid = MCStudentModInfo.ID, name = MCStudentModInfo.NAME, version = MCStudentModInfo.VERSION)
-@NetworkMod(channels = { MCStudentModInfo.CHANNEL }, clientSideRequired = true, serverSideRequired = true)
+@NetworkMod(channels = { MCStudentModInfo.CHANNEL }, clientSideRequired = true, serverSideRequired = false, packetHandler = MCStudentPacketHandler.class)
 public class MCStudentForgeMod {
 	private static final String PL = MCStudentModInfo.PROXY_LOCATION;
 	@SidedProxy(clientSide = PL + ".ClientProxy", serverSide = PL + ".CommonProxy")
@@ -33,5 +33,4 @@ public class MCStudentForgeMod {
 	public static void postInit(FMLPostInitializationEvent event) {
 
 	}
-
 }

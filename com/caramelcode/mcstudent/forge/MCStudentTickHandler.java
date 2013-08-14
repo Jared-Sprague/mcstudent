@@ -2,13 +2,12 @@ package com.caramelcode.mcstudent.forge;
 
 import java.util.EnumSet;
 
-import com.caramelcode.mcstudent.gui.QuestionPopup;
-
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiScreen;
-import net.minecraftforge.common.Configuration;
+
+import com.caramelcode.mcstudent.gui.QuestionPopup;
+
 import cpw.mods.fml.common.IScheduledTickHandler;
-import cpw.mods.fml.common.ITickHandler;
 import cpw.mods.fml.common.TickType;
 
 public class MCStudentTickHandler implements IScheduledTickHandler {

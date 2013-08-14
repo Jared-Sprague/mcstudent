@@ -6,9 +6,7 @@ import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
 
 import com.caramelcode.mcstudent.forge.AssetHelper;
-import com.caramelcode.mcstudent.forge.MCStudentModInfo;
 import com.mcf.davidee.guilib.basic.BasicScreen;
-import com.mcf.davidee.guilib.basic.OverlayScreen;
 
 public abstract class MCStudentPopup extends BasicScreen {
 

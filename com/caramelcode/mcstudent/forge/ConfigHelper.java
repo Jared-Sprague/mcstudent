@@ -6,7 +6,7 @@ import net.minecraftforge.common.Configuration;
 
 public class ConfigHelper {
 	public static final String STUDENT_CATEGORY = "student_category";
-	public static final int DEFAULT_QUESTION_MINUTES = 3;
+	public static final int DEFAULT_QUESTION_MINUTES = 1;
 	public static final int ONE_MINUTE_TICKS = 1200;
 	public static final int DEFAULT_STUDENT_GRADE = 1;
 	private static Configuration config = null;

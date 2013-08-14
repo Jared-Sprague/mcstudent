@@ -1,17 +1,14 @@
 package com.caramelcode.mcstudent.gui;
 
-import java.util.Set;
-
 import net.minecraft.client.Minecraft;
-import net.minecraft.world.World;
+import net.minecraft.entity.player.InventoryPlayer;
+import net.minecraft.network.packet.Packet250CustomPayload;
 
 import com.caramelcode.mcstudent.forge.AssetHelper;
 import com.caramelcode.mcstudent.forge.MCStudentModInfo;
 import com.caramelcode.mcstudent.questions.MathTextFieldQuestion;
 import com.caramelcode.mcstudent.questions.TextFieldQuestion;
 import com.google.common.base.Strings;
-import com.mcf.davidee.guilib.basic.BasicScreen;
-import com.mcf.davidee.guilib.basic.BasicScreen.CloseHandler;
 import com.mcf.davidee.guilib.basic.Label;
 import com.mcf.davidee.guilib.core.Button;
 import com.mcf.davidee.guilib.core.Button.ButtonHandler;
@@ -20,7 +17,8 @@ import com.mcf.davidee.guilib.core.TextField;
 import com.mcf.davidee.guilib.core.TextField.CharacterFilter;
 import com.mcf.davidee.guilib.vanilla.ButtonVanilla;
 import com.mcf.davidee.guilib.vanilla.TextFieldVanilla;
-import com.mcf.davidee.msc.gui.edit.GroupsMenu;
+
+import cpw.mods.fml.common.network.PacketDispatcher;
 
 public class QuestionPopup extends MCStudentPopup {
 
@@ -74,8 +72,11 @@ public class QuestionPopup extends MCStudentPopup {
 			public void buttonClicked(Button button) {
 				if (answerField.getText().equalsIgnoreCase(question.getAnswer())) {
 					// answer was correct play the correct answer sound
-					Minecraft mc = Minecraft.getMinecraft();
-					mc.sndManager.playSoundFX(AssetHelper.SOUND_CORRECT, 3.0F, 1.0F);
+					Minecraft.getMinecraft().sndManager.playSoundFX(AssetHelper.SOUND_CORRECT, 3.0F, 1.0F);
+					
+					// Give player a Diamond reward. TODO: vary this reward based on correct answer streaks
+					PacketDispatcher.sendPacketToServer(new Packet250CustomPayload(MCStudentModInfo.CHANNEL, new byte[]{1}));
+					
 					close();
 				} else {
 					// answer was wrong, get a new question and update the popup

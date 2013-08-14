@@ -1,6 +1,5 @@
 package com.caramelcode.mcstudent.questions;
 
-import java.util.ArrayList;
 import java.util.Random;
 
 import com.caramelcode.mcstudent.forge.ConfigHelper;
