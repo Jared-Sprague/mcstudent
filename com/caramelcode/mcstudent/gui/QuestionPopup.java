@@ -1,7 +1,6 @@
 package com.caramelcode.mcstudent.gui;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.network.packet.Packet250CustomPayload;
 
 import com.caramelcode.mcstudent.forge.AssetHelper;

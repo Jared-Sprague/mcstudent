@@ -17,26 +17,24 @@ public class ConfigHelper {
 			config = new Configuration(configFile);
 
 			config.load();
-			
-			//TODO: make a GUI manager for config variables
-			
+
+			// TODO: make a GUI manager for config variables
+
 			// Initialize the category
 			ConfigCategory category = config.getCategory(STUDENT_CATEGORY);
 			category.setComment("I:question_minutes - Number of minutes between questions.\n"
 					+ "I:student_grade - Student's grade level. Possible values 1-4 currently. More grade levels coming soon.");
 
 			// Initialize default configuration variables
-			int questionMinutes = config.get(STUDENT_CATEGORY, "question_minutes",
-					DEFAULT_QUESTION_MINUTES).getInt();
-			int studentGrade = config.get(STUDENT_CATEGORY, "student_grade", DEFAULT_STUDENT_GRADE)
-					.getInt();
+			config.get(STUDENT_CATEGORY, "question_minutes", DEFAULT_QUESTION_MINUTES).getInt();
+			config.get(STUDENT_CATEGORY, "student_grade", DEFAULT_STUDENT_GRADE).getInt();
 
 			config.save();
 		}
 	}
 
 	public static Configuration getConfig() {
-		return config;	
+		return config;
 	}
 
 	public static int getQuestionMinutes() {
