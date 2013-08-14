@@ -18,6 +18,8 @@ public class ConfigHelper {
 
 			config.load();
 			
+			//TODO: make a GUI manager for config variables
+			
 			// Initialize the category
 			ConfigCategory category = config.getCategory(STUDENT_CATEGORY);
 			category.setComment("I:question_minutes - Number of minutes between questions.\n"

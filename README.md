@@ -1,7 +1,7 @@
 mcstudent
 =========
 
-Minecraft Student Mod makes minecraft players better students by asking practice math questions during play.
+Become a better student and earn Diamonds by playing Minecraft and answering math questions based on your grade level!
 
 Installation
 -------------------
