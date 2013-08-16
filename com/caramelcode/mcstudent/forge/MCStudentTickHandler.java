@@ -54,6 +54,12 @@ public class MCStudentTickHandler implements IScheduledTickHandler {
 
 	@Override
 	public int nextTickSpacing() {
-		return ConfigHelper.ONE_MINUTE_TICKS * ConfigHelper.getQuestionMinutes();
+		int ticks = ConfigHelper.ONE_MINUTE_TICKS * ConfigHelper.getQuestionMinutes();
+		
+		if (ConfigHelper.isDebug()) {
+			ticks = ConfigHelper.DEBUG_TICK_SPACING;
+		}
+		
+		return ticks;
 	}
 }

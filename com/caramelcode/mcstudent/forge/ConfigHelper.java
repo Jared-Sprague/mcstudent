@@ -10,6 +10,9 @@ public class ConfigHelper {
 	public static final int DEFAULT_QUESTION_MINUTES = 5;
 	public static final int ONE_MINUTE_TICKS = 1200;
 	public static final int DEFAULT_STUDENT_GRADE = 1;
+	public static final boolean DEBUG_MODE = false;
+	public static final int DEBUG_TICK_SPACING = 200;  // debug tick spacing set to 10 seconds
+
 	private static Configuration config = null;
 
 	public static void init(File configFile) {
@@ -57,5 +60,16 @@ public class ConfigHelper {
 		}
 
 		return studentGrade;
+	}
+
+	public static boolean isDebug() {
+		boolean debugMode = DEBUG_MODE;
+
+		if (config != null) {
+			debugMode = config.get(STUDENT_CATEGORY, "debug", DEBUG_MODE).getBoolean(
+					DEBUG_MODE);
+		}
+
+		return debugMode;
 	}
 }

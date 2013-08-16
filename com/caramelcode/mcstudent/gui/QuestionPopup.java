@@ -1,12 +1,14 @@
 package com.caramelcode.mcstudent.gui;
 
+import org.lwjgl.input.Keyboard;
+
 import net.minecraft.client.Minecraft;
 import net.minecraft.network.packet.Packet250CustomPayload;
 
 import com.caramelcode.mcstudent.forge.AssetHelper;
 import com.caramelcode.mcstudent.forge.MCStudentModInfo;
-import com.caramelcode.mcstudent.questions.MathTextFieldQuestion;
-import com.caramelcode.mcstudent.questions.TextFieldQuestion;
+import com.caramelcode.mcstudent.questions.QuestionFactory;
+import com.caramelcode.mcstudent.questions.Question;
 import com.google.common.base.Strings;
 import com.mcf.davidee.guilib.basic.Label;
 import com.mcf.davidee.guilib.core.Button;
@@ -25,7 +27,7 @@ public class QuestionPopup extends MCStudentPopup {
 	private Label titleLabel, questionLabel;
 	private Button submit;
 	private TextField answerField;
-	private TextFieldQuestion question;
+	private Question question;
 
 	private boolean validInput() {
 		String text = answerField.getText();
@@ -38,7 +40,7 @@ public class QuestionPopup extends MCStudentPopup {
 
 	public QuestionPopup() {
 		super(null);
-		question = new MathTextFieldQuestion();
+		question = QuestionFactory.buildQuestion();
 	}
 
 	@Override
@@ -69,19 +71,7 @@ public class QuestionPopup extends MCStudentPopup {
 		questionLabel.setShadowedText(false);
 		submit = new ButtonVanilla(120, 20, "Answer", new ButtonHandler() {
 			public void buttonClicked(Button button) {
-				if (answerField.getText().equalsIgnoreCase(question.getAnswer())) {
-					// answer was correct play the correct answer sound
-					Minecraft.getMinecraft().sndManager.playSoundFX(AssetHelper.SOUND_CORRECT, 3.0F, 1.0F);
-					
-					// Give player a Diamond reward. TODO: vary this reward based on correct answer streaks
-					PacketDispatcher.sendPacketToServer(new Packet250CustomPayload(MCStudentModInfo.CHANNEL, new byte[]{1}));
-					
-					close();
-				} else {
-					// answer was wrong, get a new question and update the popup
-					question = new MathTextFieldQuestion();
-					questionLabel.setText(question.getQuestionText());
-				}
+				processAnswer();
 			}
 		});
 		submit.setEnabled(false);
@@ -101,15 +91,46 @@ public class QuestionPopup extends MCStudentPopup {
 		});
 
 		answerField.setMaxLength(23);
+		answerField.click(1, 1);
 
 		container.addWidgets(titleLabel, questionLabel, answerField, submit);
+		container.setFocused(answerField);
 
 		containers.add(container);
 		selectedContainer = container;
 	}
 
+	private void processAnswer() {
+		if (answerField.getText().equalsIgnoreCase(question.getAnswer())) {
+			// answer was correct play the correct answer sound
+			Minecraft.getMinecraft().sndManager.playSoundFX(AssetHelper.SOUND_CORRECT, 3.0F, 1.0F);
+
+			// Give player a Diamond reward. TODO: vary this reward based on
+			// correct answer streaks
+			PacketDispatcher.sendPacketToServer(new Packet250CustomPayload(
+					MCStudentModInfo.CHANNEL, new byte[] { 1 }));
+
+			close();
+		} else {
+			// answer was wrong, get a new question and update the popup
+			question = QuestionFactory.buildQuestion();
+			questionLabel.setText(question.getQuestionText());
+		}
+	}
+
 	@Override
 	public boolean doesGuiPauseGame() {
 		return true;
+	}
+
+	@Override
+	protected void reopenedGui() {
+	}
+
+	@Override
+	protected void unhandledKeyTyped(char c, int code) {
+		if (code == Keyboard.KEY_RETURN) {
+			processAnswer();
+		}
 	}
 }

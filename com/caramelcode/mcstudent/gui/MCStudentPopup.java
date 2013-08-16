@@ -19,10 +19,6 @@ public abstract class MCStudentPopup extends BasicScreen {
 	}
 
 	@Override
-	protected void unhandledKeyTyped(char c, int code) {
-	}
-
-	@Override
 	public boolean doesGuiPauseGame() {
 		return false;
 	}
@@ -35,13 +31,5 @@ public abstract class MCStudentPopup extends BasicScreen {
 		mc.renderEngine.func_110577_a(TEXTURE);
 		GL11.glColor4f(1, 1, 1, 1);
 		drawTexturedModalRect(x, y, 0, 0, WIDTH, HEIGHT);
-	}
-
-	@Override
-	protected void createGui() {
-	}
-
-	@Override
-	protected void reopenedGui() {
 	}
 }
