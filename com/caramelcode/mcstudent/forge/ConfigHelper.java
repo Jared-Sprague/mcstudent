@@ -11,8 +11,7 @@ public class ConfigHelper {
 	public static final int ONE_MINUTE_TICKS = 1200;
 	public static final int DEFAULT_STUDENT_GRADE = 1;
 	public static final boolean DEBUG_MODE = false;
-	public static final int DEBUG_TICK_SPACING = 200;  // debug tick spacing set to 10 seconds
-
+	public static final int DEBUG_TICK_SPACING = 200;
 	private static Configuration config = null;
 
 	public static void init(File configFile) {
@@ -26,7 +25,8 @@ public class ConfigHelper {
 			// Initialize the category
 			ConfigCategory category = config.getCategory(STUDENT_CATEGORY);
 			category.setComment("I:question_minutes - Number of minutes between questions.\n"
-					+ "I:student_grade - Student's grade level. Possible values 1-4 currently. More grade levels coming soon.");
+					+ "I:student_grade - Student's grade level. Possible values 1-4 currently. "
+					+ "More grade levels coming soon.");
 
 			// Initialize default configuration variables
 			config.get(STUDENT_CATEGORY, "question_minutes", DEFAULT_QUESTION_MINUTES).getInt();
@@ -66,8 +66,7 @@ public class ConfigHelper {
 		boolean debugMode = DEBUG_MODE;
 
 		if (config != null) {
-			debugMode = config.get(STUDENT_CATEGORY, "debug", DEBUG_MODE).getBoolean(
-					DEBUG_MODE);
+			debugMode = config.get(STUDENT_CATEGORY, "debug", DEBUG_MODE).getBoolean(DEBUG_MODE);
 		}
 
 		return debugMode;

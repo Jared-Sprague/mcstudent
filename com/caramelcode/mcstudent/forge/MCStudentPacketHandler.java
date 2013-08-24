@@ -4,10 +4,12 @@ import java.util.ArrayList;
 
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.inventory.Slot;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.INetworkManager;
 import net.minecraft.network.packet.Packet250CustomPayload;
+
+import com.caramelcode.mcstudent.RewardMachine;
+
 import cpw.mods.fml.common.network.IPacketHandler;
 import cpw.mods.fml.common.network.Player;
 
@@ -19,7 +21,8 @@ public class MCStudentPacketHandler implements IPacketHandler {
 			ArrayList<ItemStack> itemListToSend = new ArrayList<ItemStack>();
 			EntityPlayerMP thePlayer = (EntityPlayerMP) player;
 
-			thePlayer.inventory.addItemStackToInventory(new ItemStack(Item.diamond));
+			thePlayer.inventory
+					.addItemStackToInventory(RewardMachine.getRewardItemStack());
 
 			for (int i = 0; i < thePlayer.openContainer.inventorySlots.size(); ++i) {
 				itemListToSend.add(((Slot) thePlayer.openContainer.inventorySlots.get(i))

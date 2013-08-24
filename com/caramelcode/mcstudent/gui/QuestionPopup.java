@@ -5,8 +5,10 @@ import org.lwjgl.input.Keyboard;
 import net.minecraft.client.Minecraft;
 import net.minecraft.network.packet.Packet250CustomPayload;
 
+import com.caramelcode.mcstudent.RewardMachine;
 import com.caramelcode.mcstudent.forge.AssetHelper;
 import com.caramelcode.mcstudent.forge.MCStudentModInfo;
+import com.caramelcode.mcstudent.questions.ArithmeticQuestion;
 import com.caramelcode.mcstudent.questions.QuestionFactory;
 import com.caramelcode.mcstudent.questions.Question;
 import com.google.common.base.Strings;
@@ -86,6 +88,10 @@ public class QuestionPopup extends MCStudentPopup {
 			}
 
 			public boolean isAllowedCharacter(char c) {
+				if (question instanceof ArithmeticQuestion) {
+					return Character.isDigit(c);
+				} 
+				
 				return Character.isLetterOrDigit(c);
 			}
 		});
@@ -103,17 +109,22 @@ public class QuestionPopup extends MCStudentPopup {
 	private void processAnswer() {
 		if (answerField.getText().equalsIgnoreCase(question.getAnswer())) {
 			// answer was correct play the correct answer sound
-			Minecraft.getMinecraft().sndManager.playSoundFX(AssetHelper.SOUND_CORRECT, 3.0F, 1.0F);
+			Minecraft mc = Minecraft.getMinecraft();
+			mc.sndManager.playSoundFX(AssetHelper.SOUND_CORRECT, 3.0F, 1.0F);
 
-			// Give player a Diamond reward. TODO: vary this reward based on
-			// correct answer streaks
+			// Give player a reward
 			PacketDispatcher.sendPacketToServer(new Packet250CustomPayload(
 					MCStudentModInfo.CHANNEL, new byte[] { 1 }));
-
+			
+			// close the current question GUI
 			close();
+			
+			// display correct confirmation popup
+			mc.displayGuiScreen(new CorrectAnswerPopup());
 		} else {
 			// answer was wrong, get a new question and update the popup
 			question = QuestionFactory.buildQuestion();
+			RewardMachine.resetCorrectCount(); // set the correct streak back to 0
 			questionLabel.setText(question.getQuestionText());
 		}
 	}
