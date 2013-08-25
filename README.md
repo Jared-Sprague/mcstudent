@@ -12,7 +12,7 @@ Installation
        http://www.mediafire.com/download/zq26w73rcs96gcp/Forge_GuiLibv1.0.6.zip
 4. Place Forge_GuiLib zip file into the .minecraft/mods/ folder.
 5. Download this mod here: 
-       https://s3.amazonaws.com/pub.sprague/jared/Minecraft-Student-Beta-0.3-1.6.2.jar
+       https://s3.amazonaws.com/pub.sprague/jared/Minecraft-Student-Beta-0.4-1.6.2.jar
 6. Place the Minecraft-Student jar file the .minecraft/mods/ folder. 
 7. Start Minecraft and choose "Forge" profile, done!
 
