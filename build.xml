@@ -10,8 +10,8 @@
 	<property name="mcpsrc.dir" value="${mcp.dir}/src/minecraft" />
 	<property name="projectclasses.dir" value="${mcp.dir}/reobf/minecraft/com" />
 	<property name="mc.version" value="1.6.2" />
-	<property name="mod.version" value="Beta-0.2" />
-	<property name="mod.name" value="mcstudent" />
+	<property name="mod.version" value="Beta-0.3" />
+	<property name="mod.name" value="Minecraft-Student" />
 
 	<!-- Targets -->
 	<target name="props">
@@ -43,7 +43,8 @@
 	</target>
 
 	<target name="copy">
-		<copydir src="${projectclasses.dir}" dest="${dist.dir}/com" />
+		<copydir src="${projectclasses.dir}/caramelcode" dest="${dist.dir}/com/caramelcode" />
+		<copydir src="${projectclasses.dir}/mcf/davidee/guilib" dest="${dist.dir}/com/mcf/davidee/guilib" />
 		<copydir src="${git.dir}/assets" dest="${dist.dir}/assets" />
 		<copy file="${git.dir}/mcmod.info" todir="${dist.dir}"/>
 		<copy file="${git.dir}/README.md" todir="${dist.dir}"/>

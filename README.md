@@ -6,7 +6,9 @@ Become a better student and earn Diamonds by playing Minecraft and answering mat
 Installation
 -------------------
 1. Install Minecraft Forge.
-2. Download Davidee's GUI Library (http://tinyurl.com/llhuhm8) and place it in the mods folder.
-3. Place this mod in the mods folder. 
-4. Run the game once to generate the config file.
-5. Edit the config file: .minecraft/config/MCSTUDENT.cfg to to set your grade level and minutes between questions.
+2. Place the Minecraft-Student jar file the mods folder. 
+
+Configuration
+-------------------
+1. Run the game once to generate the config file.
+2. Edit the config file: .minecraft/config/MCSTUDENT.cfg to to set your grade level and minutes between questions.

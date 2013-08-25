@@ -7,11 +7,11 @@ import net.minecraftforge.common.Configuration;
 
 public class ConfigHelper {
 	public static final String STUDENT_CATEGORY = "student_category";
-	public static final int DEFAULT_QUESTION_MINUTES = 1;
+	public static final int DEFAULT_QUESTION_MINUTES = 3;
 	public static final int ONE_MINUTE_TICKS = 1200;
 	public static final int DEFAULT_STUDENT_GRADE = 1;
 	public static final boolean DEBUG_MODE = false;
-	public static final int DEBUG_TICK_SPACING = 200;
+	public static final int DEBUG_TICK_SPACING = 400;
 	private static Configuration config = null;
 
 	public static void init(File configFile) {

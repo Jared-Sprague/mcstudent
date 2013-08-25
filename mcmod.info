@@ -3,13 +3,13 @@
 "modid": "MCSTUDENT",
 "name": "Minecraft Student",
 "description": "Become a better Student by playing Minecraft and answering questions!",
-"version": "Beta 0.2",
-"url": "www.caramelcode.com/minecraft/student",
+"version": "Beta 0.3",
+"url": "www.minecraftstudent.org",
 "authorList": [
 "DaddyDaddyDaddy"
 ],
-"credits": "Thank you to my kids Rowen and Elliott for inspiring me to write this mod!",
-"logoFile": "/assets/mcstudent/logoFile.png",
+"credits": "Thank you Rowen and Elliott for helping me with this mod!",
+"logoFile": "assets/mcstudent/MinecraftStudent-Icon.png",
 "screenshots": [],
 "dependencies": [],
 "mcversion": "1.6.2"
