@@ -111,6 +111,9 @@ public class QuestionPopup extends MCStudentPopup {
 			// answer was correct play the correct answer sound
 			Minecraft mc = Minecraft.getMinecraft();
 			mc.sndManager.playSoundFX(AssetHelper.SOUND_CORRECT, 3.0F, 1.0F);
+			
+			// Increment the correct count
+			RewardMachine.incrementCorrectCount();
 
 			// Give player a reward
 			PacketDispatcher.sendPacketToServer(new Packet250CustomPayload(
@@ -122,10 +125,9 @@ public class QuestionPopup extends MCStudentPopup {
 			// display correct confirmation popup
 			mc.displayGuiScreen(new CorrectAnswerPopup());
 		} else {
-			// answer was wrong, get a new question and update the popup
-			question = QuestionFactory.buildQuestion();
+			// answer was wrong
 			RewardMachine.resetCorrectCount(); // set the correct streak back to 0
-			questionLabel.setText(question.getQuestionText());
+			titleLabel.setText("Whoops Try Again!");
 		}
 	}
 

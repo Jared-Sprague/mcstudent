@@ -97,6 +97,10 @@ public class RewardMachine {
 				"Super cool!",
 				"Meow!"};
 		
-		return praise[NumberHelper.rand(praise.length - 1)];
+		int randIndex = NumberHelper.rand(praise.length - 1);
+		if (randIndex >= praise.length) {
+			randIndex = praise.length - 1; // just case to avoid array index out of bounds
+		}
+		return praise[randIndex];
 	}
 }
