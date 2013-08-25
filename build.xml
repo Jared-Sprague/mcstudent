@@ -1,0 +1,60 @@
+<!-- nallar's BuildCraft ant build script edited for mcstudent -->
+<project name="mcstudent" default="main">
+	<!-- Properties -->
+	<property name="mods.dir" value="/home/jsprague/projects/minecraft_mods" />
+	<property name="project.dir" value="${mods.dir}/mcstudent" />
+	<property name="git.dir" value="${project.dir}/git/mcstudent" />
+	<property name="dist.dir" value="${project.dir}/dist" />
+	<property name="forge.dir" value="${mods.dir}/forge" />
+	<property name="mcp.dir" value="${forge.dir}/mcp" />
+	<property name="mcpsrc.dir" value="${mcp.dir}/src/minecraft" />
+	<property name="projectclasses.dir" value="${mcp.dir}/reobf/minecraft/com" />
+	<property name="mc.version" value="1.6.2" />
+	<property name="mod.version" value="Beta-0.2" />
+	<property name="mod.name" value="mcstudent" />
+
+	<!-- Targets -->
+	<target name="props">
+		<echo message="${mcp.dir}" />
+	</target>
+
+	<!-- Clear project.directory -->
+	<target name="clean">
+		<delete dir="${dist.dir}" />
+	</target>
+
+	<!-- Set full version -->
+	<target name="initialize-version">
+		<echo message="Starting build for ${mod.name} v${mod.version}" />
+	</target>
+
+	<target name="compile" depends="initialize-version">
+
+		<!-- Recompile -->
+		<exec dir="${mcp.dir}" executable="sh" osfamily="unix">
+			<arg value="recompile.sh" />
+		</exec>
+
+		<!-- Reobfuscate -->
+		<exec dir="${mcp.dir}" executable="sh" osfamily="unix">
+			<arg value="reobfuscate.sh" />
+		</exec>
+
+	</target>
+
+	<target name="copy">
+		<copydir src="${projectclasses.dir}" dest="${dist.dir}/com" />
+		<copydir src="${git.dir}/assets" dest="${dist.dir}/assets" />
+		<copy file="${git.dir}/mcmod.info" todir="${dist.dir}"/>
+		<copy file="${git.dir}/README.md" todir="${dist.dir}"/>
+	</target>
+
+	<!-- Package the compiled files -->
+	<target name="package" depends="clean,compile,copy">
+		<jar destfile="${dist.dir}/${mod.name}-${mod.version}-${mc.version}.jar" basedir="${dist.dir}" />
+	</target>
+
+	<!-- Default target to run -->
+	<target name="main" depends="package" />
+
+</project>
