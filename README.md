@@ -20,3 +20,7 @@ Configuration
 -------------------
 1. Run the game once to generate the config file.
 2. Edit the config file: .minecraft/config/MCSTUDENT.cfg to to set your grade level and minutes between questions.
+
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/Jared-Sprague/mcstudent/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
