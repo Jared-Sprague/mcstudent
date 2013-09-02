@@ -10,7 +10,7 @@ import com.caramelcode.mcstudent.forge.AssetHelper;
 import com.caramelcode.mcstudent.forge.MCStudentModInfo;
 import com.caramelcode.mcstudent.questions.ArithmeticQuestion;
 import com.caramelcode.mcstudent.questions.QuestionFactory;
-import com.caramelcode.mcstudent.questions.Question;
+import com.caramelcode.mcstudent.questions.ITextfieldQuestion;
 import com.google.common.base.Strings;
 import com.mcf.davidee.guilib.basic.Label;
 import com.mcf.davidee.guilib.core.Button;
@@ -29,7 +29,7 @@ public class QuestionPopup extends MCStudentPopup {
 	private Label titleLabel, questionLabel;
 	private Button submit;
 	private TextField answerField;
-	private Question question;
+	private ITextfieldQuestion question;
 
 	private boolean validInput() {
 		String text = answerField.getText();

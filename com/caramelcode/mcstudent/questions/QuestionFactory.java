@@ -1,5 +1,8 @@
 package com.caramelcode.mcstudent.questions;
 
+import java.util.List;
+
+import com.caramelcode.mcstudent.QuestionPackLoader;
 import com.caramelcode.mcstudent.forge.ConfigHelper;
 import com.caramelcode.mcstudent.util.NumberHelper;
 
@@ -7,19 +10,30 @@ public class QuestionFactory {
 	private QuestionFactory() {
 	}
 
-	public static Question buildQuestion() {
+	public static ITextfieldQuestion buildQuestion() {
 		// TODO: Add more question types, and return a random one
-		return buildArithmeticQuestion();
+		// buildArithmeticQuestion();
+		List<List> questions = QuestionPackLoader
+				.readWithCsvListReader("questionpacks/beginning_spanish.csv");
+		
+		ITextfieldQuestion question = new GenericTextQuestion("question", "answer");
+		
+		for (List<String> q : questions) {
+			//System.out.println(String.format("*** QUESTION: %s", q));
+			question = new GenericTextQuestion(q.get(0), q.get(1));
+		}
+
+		return question;
 	}
 
-	private static Question buildArithmeticQuestion() {
+	private static ITextfieldQuestion buildArithmeticQuestion() {
 		ArithmeticQuestion question = null;
 		int studentGrade = ConfigHelper.getStudentGrade();
 		int opIndex;
 
 		switch (studentGrade) {
 			case 1:
-				opIndex = NumberHelper.randRange(1, 2); // include +, - 
+				opIndex = NumberHelper.randRange(1, 2); // include +, -
 				break;
 			case 2:
 			case 3:
