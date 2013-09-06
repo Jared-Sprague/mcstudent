@@ -1,32 +1,19 @@
 package com.caramelcode.mcstudent.questions;
 
-import java.util.List;
-
-import com.caramelcode.mcstudent.QuestionPackLoader;
 import com.caramelcode.mcstudent.forge.ConfigHelper;
 import com.caramelcode.mcstudent.util.NumberHelper;
 
-public class QuestionFactory {
-	private QuestionFactory() {
+/**
+ * This class generates math fact questions +, -, *, / based on grade level.
+ * 
+ * @author jsprague
+ *
+ */
+public class MathFactQuestionFactory {
+	private MathFactQuestionFactory() {
 	}
 
-	public static ITextfieldQuestion buildQuestion() {
-		// TODO: Add more question types, and return a random one
-		// buildArithmeticQuestion();
-		List<List> questions = QuestionPackLoader
-				.readWithCsvListReader("questionpacks/beginning_spanish.csv");
-		
-		ITextfieldQuestion question = new GenericTextQuestion("question", "answer");
-		
-		for (List<String> q : questions) {
-			//System.out.println(String.format("*** QUESTION: %s", q));
-			question = new GenericTextQuestion(q.get(0), q.get(1));
-		}
-
-		return question;
-	}
-
-	private static ITextfieldQuestion buildArithmeticQuestion() {
+	public static IQuestion buildArithmeticQuestion() {
 		ArithmeticQuestion question = null;
 		int studentGrade = ConfigHelper.getStudentGrade();
 		int opIndex;

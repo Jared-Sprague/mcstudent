@@ -1,6 +1,6 @@
 package com.caramelcode.mcstudent.questions;
 
-public class GenericTextQuestion implements ITextfieldQuestion {
+public class GenericTextQuestion implements IQuestion {
 	private String questionText;
 	private String answer;
 
@@ -19,5 +19,4 @@ public class GenericTextQuestion implements ITextfieldQuestion {
 	public String getAnswer() {
 		return answer;
 	}
-
 }

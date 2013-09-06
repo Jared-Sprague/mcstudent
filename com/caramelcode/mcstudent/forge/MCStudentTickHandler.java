@@ -6,6 +6,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiScreen;
 
 import com.caramelcode.mcstudent.gui.QuestionPopup;
+import com.caramelcode.mcstudent.questions.QuestionChooser;
 
 import cpw.mods.fml.common.IScheduledTickHandler;
 import cpw.mods.fml.common.TickType;
@@ -32,7 +33,7 @@ public class MCStudentTickHandler implements IScheduledTickHandler {
 
 	private void onTickInGame() {
 		Minecraft mc = Minecraft.getMinecraft();
-		mc.displayGuiScreen(new QuestionPopup());
+		mc.displayGuiScreen(new QuestionPopup(QuestionChooser.chooseQuestion()));
 	}
 
 	private void onTickInGUI(GuiScreen guiscreen) {

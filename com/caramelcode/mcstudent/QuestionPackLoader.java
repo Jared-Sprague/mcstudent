@@ -24,7 +24,8 @@ public class QuestionPackLoader {
 	 * @return the cell processors
 	 */
 	private static CellProcessor[] getProcessors() {
-		final CellProcessor[] processors = new CellProcessor[] { new NotNull(), // Question
+		final CellProcessor[] processors = new CellProcessor[] { 
+				new NotNull(), // Question
 				new NotNull(), // Correct_Answer
 				new Optional(), // Multiple Choice Distractor_1
 				new Optional(), // Multiple Choice Distractor_2
@@ -37,31 +38,24 @@ public class QuestionPackLoader {
 	/**
 	 * An example of reading using CsvListReader.
 	 */
-	public static List<List> readWithCsvListReader(String filePath) {
+	public static List<List> readWithCsvListReader(File file) {
 		ICsvListReader listReader = null;
 		List<List> questions = new ArrayList<List>();
 
 		try {
-			listReader = new CsvListReader(new FileReader(new File(filePath)),
+			listReader = new CsvListReader(new FileReader(file),
 					CsvPreference.STANDARD_PREFERENCE);
 
-			listReader.getHeader(true); // skip the header (can't be used with
-										// CsvListReader)
-			// final CellProcessor[] processors = getProcessors(); // might need
-			// this for regex later
-
-			List<String> customerList;
-			while ((customerList = listReader.read()) != null) {
-				//System.out.println(String.format("lineNo=%s, rowNo=%s, customerList=%s",
-				//		listReader.getLineNumber(), listReader.getRowNumber(), customerList));
-				questions.add(customerList);
+			listReader.getHeader(true); 
+			
+			List<String> questionRowList;
+			while ((questionRowList = listReader.read()) != null) {
+				questions.add(questionRowList);
 			}
 
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
 			if (listReader != null) {

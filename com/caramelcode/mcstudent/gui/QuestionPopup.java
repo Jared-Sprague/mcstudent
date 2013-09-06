@@ -1,16 +1,15 @@
 package com.caramelcode.mcstudent.gui;
 
-import org.lwjgl.input.Keyboard;
-
 import net.minecraft.client.Minecraft;
 import net.minecraft.network.packet.Packet250CustomPayload;
+
+import org.lwjgl.input.Keyboard;
 
 import com.caramelcode.mcstudent.RewardMachine;
 import com.caramelcode.mcstudent.forge.AssetHelper;
 import com.caramelcode.mcstudent.forge.MCStudentModInfo;
 import com.caramelcode.mcstudent.questions.ArithmeticQuestion;
-import com.caramelcode.mcstudent.questions.QuestionFactory;
-import com.caramelcode.mcstudent.questions.ITextfieldQuestion;
+import com.caramelcode.mcstudent.questions.IQuestion;
 import com.google.common.base.Strings;
 import com.mcf.davidee.guilib.basic.Label;
 import com.mcf.davidee.guilib.core.Button;
@@ -29,7 +28,7 @@ public class QuestionPopup extends MCStudentPopup {
 	private Label titleLabel, questionLabel;
 	private Button submit;
 	private TextField answerField;
-	private ITextfieldQuestion question;
+	private IQuestion question;
 
 	private boolean validInput() {
 		String text = answerField.getText();
@@ -40,9 +39,9 @@ public class QuestionPopup extends MCStudentPopup {
 		return true;
 	}
 
-	public QuestionPopup() {
+	public QuestionPopup(IQuestion question) {
 		super(null);
-		question = QuestionFactory.buildQuestion();
+		this.question = question;
 	}
 
 	@Override
@@ -92,7 +91,7 @@ public class QuestionPopup extends MCStudentPopup {
 					return Character.isDigit(c);
 				} 
 				
-				return Character.isLetterOrDigit(c);
+				return (Character.isLetterOrDigit(c) || Character.isWhitespace(c));
 			}
 		});
 

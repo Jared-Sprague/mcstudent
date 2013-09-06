@@ -2,7 +2,7 @@ package com.caramelcode.mcstudent.questions;
 
 import com.caramelcode.mcstudent.util.NumberHelper;
 
-public class ArithmeticQuestion implements ITextfieldQuestion {
+public class ArithmeticQuestion implements IQuestion {
 	private int[] operands;
 	private char operator;
 	private int gradeLevel;

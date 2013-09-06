@@ -31,7 +31,7 @@ public class NumberHelper {
 	 */
 	public static int rand(int upperLimit) {
 		Random r = new Random();
-		return r.nextInt(upperLimit) + 1;
+		return r.nextInt(upperLimit + 1);
 	}
 
 	/**

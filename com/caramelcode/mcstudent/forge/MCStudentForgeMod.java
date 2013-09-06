@@ -1,6 +1,7 @@
 package com.caramelcode.mcstudent.forge;
 
 import com.caramelcode.mcstudent.forge.proxies.CommonProxy;
+import com.caramelcode.mcstudent.questions.QuestionPackPool;
 
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
@@ -27,6 +28,7 @@ public class MCStudentForgeMod {
 
 	@EventHandler
 	public static void init(FMLInitializationEvent event) {
+		QuestionPackPool.loadQuestionPacks();
 	}
 
 	@EventHandler
